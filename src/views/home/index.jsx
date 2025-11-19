@@ -1,5 +1,4 @@
-import React, { memo, useEffect, useState } from 'react'
-import ljRequest from '@/services'
+import React, { memo } from 'react'
 
 
 const Home = memo(() => {
