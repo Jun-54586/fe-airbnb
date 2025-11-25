@@ -11,11 +11,6 @@ const HomeWrapper = styled.div`
     margin-top: 30px;
   }
 
-  .room-list {
-    display: flex;
-    flex-wrap: wrap;
-    margin: -8px;
-  }
 `
 
 export default HomeWrapper
