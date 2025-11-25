@@ -13,7 +13,6 @@ const HeaderCenter = memo(() => {
           <IconSearchBar/>
         </div>
       </div>
-      
     </LeftWrapper>
   )
 })
