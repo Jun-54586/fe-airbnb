@@ -6,3 +6,9 @@ export function getHomeGoodPriceData() {
     url: "home/goodprice"
   })
 }
+
+export function getHomeHighScoreData() {
+  return ljRequest.get({
+    url: "home/highscore"
+  })
+}

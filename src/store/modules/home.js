@@ -1,31 +1,49 @@
-import { getHomeGoodPriceData } from "@/services";
+import { getHomeGoodPriceData, getHomeHighScoreData } from "@/services";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
-export const fetchHomeDataAtion = createAsyncThunk("fetchdata", async () => {
-  const res = await getHomeGoodPriceData()
-  return res
-})
+export const fetchHomeDataAction = createAsyncThunk( "fetchdata", async (payload, { dispatch }) => {
+    // 使用 Promise.all 并行执行多个请求
+    const [goodPriceInfo, highScoreInfo] = await Promise.all([
+      getHomeGoodPriceData(),
+      getHomeHighScoreData()
+    ]);
+    
+    // 分别 dispatch 结果
+    dispatch(changeGoodPriceInfoAction(goodPriceInfo));
+    dispatch(changeHighScoreInfoAction(highScoreInfo));
+    
+    // 返回所有数据，可以在 extraReducers 中使用
+    return { goodPriceInfo, highScoreInfo };
+  }
+);
 
 const homeSlice = createSlice({
   name: "home",
   initialState: {
-    goodPriceInfo: {}
+    goodPriceInfo: {},
+    highScoreInfo: {}
   },
   reducers: {
     changeGoodPriceInfoAction(state, { playload }) {
       state.goodPriceInfo = playload
+    },
+    changeHighScoreInfoAction(state, { playload }) {
+      state.highScoreInfo = playload
     }
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchHomeDataAtion.fulfilled, (state, { payload }) => {
-        console.log(payload);
-        state.goodPriceInfo = payload
+      .addCase(fetchHomeDataAction.fulfilled, (state, { payload }) => {
+        state.goodPriceInfo = payload.goodPriceInfo
+        state.highScoreInfo = payload.highScoreInfo
       })
   }
 })
 
-export const {changeGoodPriceInfoAction} = homeSlice.actions
+export const {
+  changeGoodPriceInfoAction, 
+  changeHighScoreInfoAction
+} = homeSlice.actions
 
 export default homeSlice.reducer
