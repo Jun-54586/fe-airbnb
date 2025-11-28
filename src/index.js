@@ -13,7 +13,7 @@ import theme from './assets/theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Suspense fallback="loading">
       <Provider store={store}>
         <ThemeProvider theme={theme}>
@@ -24,7 +24,7 @@ root.render(
         
       </Provider>
     </Suspense>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 

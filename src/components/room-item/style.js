@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const RoomItemWrapper = styled.div`
   box-sizing: border-box;
-  width: 25%;
+  width: ${props => props.itemwidth};
   padding: 8px;
 
   .inner {
@@ -30,7 +30,7 @@ export const RoomItemWrapper = styled.div`
     margin: 10px 0 5px;
     font-size: 12px;
     font-weight: 700;
-    color: ${props => props.verifyColor};
+    color: ${props => props.verifycolor};
   }
 
   .name {
