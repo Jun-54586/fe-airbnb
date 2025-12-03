@@ -1,24 +1,28 @@
-import { getHomeDiscountData, getHomeGoodPriceData, getHomeHighScoreData, getHomeHotRecommendData } from "@/services";
+import { getHomeDiscountData, getHomeGoodPriceData, getHomeHighScoreData, getHomeHotRecommendData, getHomeLongforData, getHomePlusData } from "@/services";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
 export const fetchHomeDataAction = createAsyncThunk( "fetchdata", async (payload, { dispatch }) => {
     // 使用 Promise.all 并行执行多个请求
-    const [goodPriceInfo, highScoreInfo, discountInfo, recommendInfo] = await Promise.all([
+    const [goodPriceInfo, highScoreInfo, discountInfo, recommendInfo, longforInfo, plusInfo] = await Promise.all([
       getHomeGoodPriceData(),
       getHomeHighScoreData(),
       getHomeDiscountData(),
-      getHomeHotRecommendData()
+      getHomeHotRecommendData(),
+      getHomeLongforData(),
+      getHomePlusData()
     ]);
     
     // 分别 dispatch 结果
     dispatch(changeGoodPriceInfoAction(goodPriceInfo));
     dispatch(changeHighScoreInfoAction(highScoreInfo));
     dispatch(changeDiscountInfoAction(discountInfo));
-    dispatch(changeRecommendInfoAction(recommendInfo))
+    dispatch(changeRecommendInfoAction(recommendInfo));
+    dispatch(changeLongforInfoAction(longforInfo));
+    dispatch(changePlusInfoAction(plusInfo))
     
     // 返回所有数据，可以在 extraReducers 中使用
-    return { goodPriceInfo, highScoreInfo, discountInfo, recommendInfo };
+    return { goodPriceInfo, highScoreInfo, discountInfo, recommendInfo, longforInfo, plusInfo };
   }
 );
 
@@ -28,7 +32,9 @@ const homeSlice = createSlice({
     goodPriceInfo: {},
     highScoreInfo: {},
     discountInfo: {},
-    recommendInfo: {}
+    recommendInfo: {},
+    longforInfo: {},
+    plusInfo: {}
   },
   reducers: {
     changeGoodPriceInfoAction(state, { playload }) {
@@ -42,6 +48,12 @@ const homeSlice = createSlice({
     },
     changeRecommendInfoAction(state, { playload }) {
       state.recommendInfo = playload
+    },
+    changeLongforInfoAction(state, { playload }) {
+      state.longforInfo = playload
+    },
+    changePlusInfoAction(state, { playload }) {
+      state.plusInfo = playload
     }
   },
   extraReducers: (builder) => {
@@ -51,6 +63,8 @@ const homeSlice = createSlice({
         state.highScoreInfo = payload.highScoreInfo
         state.discountInfo = payload.discountInfo
         state.recommendInfo = payload.recommendInfo
+        state.longforInfo = payload.longforInfo
+        state.plusInfo = payload.plusInfo
       })
   }
 })
@@ -59,7 +73,9 @@ export const {
   changeGoodPriceInfoAction, 
   changeHighScoreInfoAction,
   changeDiscountInfoAction,
-  changeRecommendInfoAction
+  changeRecommendInfoAction,
+  changeLongforInfoAction,
+  changePlusInfoAction
 } = homeSlice.actions
 
 export default homeSlice.reducer

@@ -7,11 +7,11 @@ export const ViewWrapper = styled.div`
   
   .scroll {
     overflow: hidden;
-  }
-
-  .scroll-content {
-    display: flex;
-    transition: transform 300ms ease;
+    
+    .scroll-content {
+      display: flex;
+      transition: transform 300ms ease;
+    }
   }
 
   .control {

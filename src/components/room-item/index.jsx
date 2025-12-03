@@ -6,6 +6,7 @@ import { Rating } from '@mui/material'
 const RoomItem = memo(function RoomItem(props) {
 
   const { itemData, itemWidth="25%" } = props
+  
 
   return (
     <RoomItemWrapper 
@@ -43,7 +44,8 @@ const RoomItem = memo(function RoomItem(props) {
 })
 
 RoomItem.propTypes = {
-  itemData: PropTypes.object
+  itemData: PropTypes.object,
+  itemWidth: PropTypes.string
 }
 
 export default RoomItem
