@@ -4,7 +4,7 @@ import { DemoWrapper } from './style'
 
 const Demo = memo(() => {
 
-    const names = ["小李", "小卢", "小林", "小胡", "小胖"]
+    const names = ["小李1", "小卢2", "小林3", "小胡4", "小胖5"]
     const [selectIndex, setSelectIndex] = useState(0)
 
     function toggleClickHandle(isNext = true) {

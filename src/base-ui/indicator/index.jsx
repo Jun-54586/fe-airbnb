@@ -11,6 +11,11 @@ const Indicator = memo(function Indicator(props) {
         const selectItemEl = contentRef.current.children[selectIndex]
         const itemLeft = selectItemEl.offsetLeft
         const itemWidth = selectItemEl.clientWidth
+        const contentWidth = contentRef.current.clientWidth
+        
+        const distance = itemLeft + itemWidth * 0.5 - contentWidth * 0.5
+        contentRef.current.style.transform = `translate(${-distance}px)`
+        
 
     }, [selectIndex])
 
