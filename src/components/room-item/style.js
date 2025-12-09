@@ -62,6 +62,35 @@ export const RoomItemWrapper = styled.div`
         }
       }
     }
+
+    .indicator {
+      position: absolute;
+      z-index: 9;
+      bottom: 10px;
+      width: 30%;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+
+      .item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 14.29%;
+
+        .dot {
+          width: 6px;
+          height: 6px;
+          background-color: #fff;
+          border-radius: 50%;
+
+          &.active {
+            width: 8px;
+            height: 8px;
+          }
+        }
+      }
+    }
   }
 
   .desc {
